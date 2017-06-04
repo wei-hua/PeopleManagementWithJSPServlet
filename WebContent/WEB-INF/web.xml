@@ -5,7 +5,7 @@
 		http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>Person Management Web Application</display-name>
-
+<!--  
 	<context-param>
 		<param-name>jdbcUrl</param-name>
 		<param-value>jdbc:mysql://localhost:3306/db_person</param-value>
@@ -20,7 +20,9 @@
 		<param-name>jdbcPassword</param-name>
 		<param-value>root</param-value>
 	</context-param>
-
+	
+-->
+	
 	<servlet>
 		<servlet-name>ControllerServlet</servlet-name>
 		<servlet-class>personManagement.ControllerServlet</servlet-class>
@@ -35,4 +37,12 @@
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/Error.jsp</location>
 	</error-page>
+	
+	<resource-ref>
+		<description>JNDI DataSource</description>
+		<res-ref-name>jndi/mysql</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
 </web-app>
