@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//import org.apache.log4j.Logger;
+
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao personDao;
+	
+	//private Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	public void init(){
 //		String jdbcUrl=getServletContext().getInitParameter("jdbcUrl");
@@ -29,7 +33,7 @@ public class ControllerServlet extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+			throws ServletException, IOException{ 
 		String action=request.getServletPath(); //
 		try{
 			switch(action){

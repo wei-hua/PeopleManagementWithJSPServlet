@@ -13,6 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
 
@@ -43,10 +44,14 @@ public class Dao {
 	private Connection jdbcConn;
 	private final String JNDINAME="java:comp/env/jndi/mysql";
 	
+	private Logger logger = Logger.getLogger(this.getClass().getName());
+	
 	protected void connect() throws NamingException, SQLException{
 		Context ctx=new InitialContext();
 		DataSource ds=(DataSource)ctx.lookup(JNDINAME);
 		jdbcConn=ds.getConnection();
+		logger.info(jdbcConn);
+		
 	}
 	
 	protected void disconnect() throws SQLException{
@@ -103,7 +108,11 @@ public class Dao {
 		
 		String sql="select * from person";
 		connect();
+		logger.info("jdbcConn2"+jdbcConn);
+		logger.error("connection wrong!");
 			Statement statement = jdbcConn.createStatement();
+			
+			logger.error("wrong!");
 			ResultSet resultSet=statement.executeQuery(sql);
 			while(resultSet.next()){
 				int id=resultSet.getInt("id");
